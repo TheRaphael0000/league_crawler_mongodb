@@ -11,6 +11,3 @@ services:
       MONGO_USERNAME: ${MONGO_USERNAME}
       MONGO_PASSWORD: ${MONGO_PASSWORD}
     restart: no
-    depends_on:
-      mongo:
-        condition: service_healthy

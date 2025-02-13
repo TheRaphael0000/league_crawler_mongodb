@@ -1,6 +1,6 @@
 services:
   mongo:
-    image: mongo
+    image: mongodb-raspberrypi4-unofficial-r7.0.4:latest
     restart: always
     env_file: '.env'
     ports:
@@ -10,12 +10,6 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
-
-    healthcheck:
-      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
-      interval: 5s
-      timeout: 1s
-      retries: 5
       
 
   mongo-express:
@@ -29,6 +23,3 @@ services:
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
       ME_CONFIG_MONGODB_URL: mongodb://${MONGO_USERNAME}:${MONGO_PASSWORD}@mongo:${MONGO_PORT}/
       ME_CONFIG_BASICAUTH: false
-    depends_on:
-      mongo:
-        condition: service_healthy
