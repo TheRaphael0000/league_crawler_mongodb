@@ -1,3 +1,6 @@
+include:
+  - 'compose-db.yaml'
+
 services:
   mongo:
     image: mongodb-raspberrypi4-unofficial-r7.0.4:latest

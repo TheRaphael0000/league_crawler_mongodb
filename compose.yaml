@@ -1,12 +1,11 @@
-include:
-  - "compose-dev.yaml"
+name: league_crawler
 
 services:
   crawler:
     build: .
     environment:
       RIOT_API_KEY: ${RIOT_API_KEY}
-      MONGO_HOST: mongo # force host to be the container name
+      MONGO_HOST: ${MONGO_HOST}
       MONGO_PORT: ${MONGO_PORT}
       MONGO_USERNAME: ${MONGO_USERNAME}
       MONGO_PASSWORD: ${MONGO_PASSWORD}
