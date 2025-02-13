@@ -1,0 +1,16 @@
+include:
+  - "compose-dev.yaml"
+
+services:
+  crawler:
+    build: .
+    environment:
+      RIOT_API_KEY: ${RIOT_API_KEY}
+      MONGO_HOST: mongo # force host to be the container name
+      MONGO_PORT: ${MONGO_PORT}
+      MONGO_USERNAME: ${MONGO_USERNAME}
+      MONGO_PASSWORD: ${MONGO_PASSWORD}
+    restart: no
+    depends_on:
+      mongo:
+        condition: service_healthy
