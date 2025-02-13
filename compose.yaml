@@ -5,8 +5,14 @@ services:
     build: .
     environment:
       RIOT_API_KEY: ${RIOT_API_KEY}
-      MONGO_HOST: ${MONGO_HOST}
+      MONGO_HOST: mongo
       MONGO_PORT: ${MONGO_PORT}
       MONGO_USERNAME: ${MONGO_USERNAME}
       MONGO_PASSWORD: ${MONGO_PASSWORD}
     restart: no
+    networks:
+      - league_crawler_mongodb_default
+
+networks:
+  league_crawler_mongodb_default:
+    external: true
