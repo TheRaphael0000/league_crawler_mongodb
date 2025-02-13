@@ -1,6 +1,8 @@
+name: league_crawler_mongodb
+
 services:
   mongo:
-    image: mongo:7
+    image: ${MONGO_IMAGE}
     restart: always
     ports:
       - ${MONGO_PORT}:${MONGO_PORT}
