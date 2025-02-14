@@ -2,6 +2,7 @@ import requests
 import os
 from dotenv import load_dotenv
 import time
+from datetime import datetime
 
 load_dotenv()
 
@@ -14,7 +15,7 @@ def api_request(url, region=None):
     else:
         url = f"{league_endpoint.format(region)}{url}"
 
-    print(url, end=" ")
+    print(datetime.now().isoformat(), url, end=" ")
 
     while True:
         response = requests.get(url, headers={"X-Riot-Token": os.getenv("RIOT_API_KEY")})
