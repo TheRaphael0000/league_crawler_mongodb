@@ -66,7 +66,7 @@ try:
 
         for match_id in matches_id:
 
-            in_db = matches.find_one({"_id": match_id}) is not None
+            in_db = matches.count_documents({"_id": match_id}) >= 1
 
             if in_db and not limited:
                 continue
