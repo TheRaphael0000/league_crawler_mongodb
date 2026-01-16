@@ -8,6 +8,7 @@ load_dotenv()
 
 riot_endpoint = "https://europe.api.riotgames.com"
 league_endpoint = "https://{0}.api.riotgames.com"
+sleep_time = 115
 
 def api_request(url, region=None):
     if region is None:
@@ -22,13 +23,15 @@ def api_request(url, region=None):
         
         print(datetime.now().isoformat(), response.status_code)
         data = response.json()
+        code = response.status_code
 
-        if response.status_code == 429:
-            print(datetime.now().isoformat(), "Sleep", 115)
-            time.sleep(115)
-        elif str(response.status_code)[0] == '4':
+        if code == 429 or [0] == '5':
+            print(datetime.now().isoformat(), f"Sleep {sleep_time} ({code})")
+            time.sleep(sleep_time)
+        elif str(code)[0] == '4':
+            print(datetime.now().isoformat(), f"Probably invalid configuration")
             exit()
-        elif response.status_code != 200:
-            raise Exception(f"error {response.status_code}")
+        elif code != 200:
+            raise Exception(f"error {code}")
         else:
             return data
