@@ -25,7 +25,7 @@ def api_request(url, region=None):
         data = response.json()
         code = response.status_code
 
-        if code == 429 or [0] == '5':
+        if code == 429 or str(code)[0] == '5':
             print(datetime.now().isoformat(), f"Sleep {sleep_time} ({code})")
             time.sleep(sleep_time)
         elif str(code)[0] == '4':
