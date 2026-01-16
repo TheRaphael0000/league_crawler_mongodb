@@ -3,9 +3,10 @@ import random
 import os
 from dotenv import load_dotenv
 import pymongo
-from api import api_request
+from .api import api_request
 
 load_dotenv()
+
 
 mongo_connection = {
     "host": os.getenv("MONGO_HOST"),
@@ -61,7 +62,7 @@ try:
                 pass
 
         except Exception as e:
-            print(e, file=sys.stderr)
+            print(datetime.now().isoformat(), e, file=sys.stderr)
             continue
 
         for match_id in matches_id:
@@ -81,8 +82,8 @@ try:
                 matches.insert_one(match)
 
             except Exception as e:
-                print(e, file=sys.stderr)
+                print(datetime.now().isoformat(), e, file=sys.stderr)
                 continue
 
 except KeyboardInterrupt as e:
-    print(e, file=sys.stderr)
+    print(datetime.now().isoformat(), e, file=sys.stderr)

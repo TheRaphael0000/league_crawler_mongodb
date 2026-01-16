@@ -1,10 +1,10 @@
-FROM python:latest
+FROM python:alpine
 
 WORKDIR /app
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 
-COPY *.py .
+COPY src src
 
-CMD ["python", "crawl.py"]
+CMD ["python", "-m", "src"]

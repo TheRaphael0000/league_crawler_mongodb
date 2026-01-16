@@ -15,16 +15,16 @@ def api_request(url, region=None):
     else:
         url = f"{league_endpoint.format(region)}{url}"
 
-    print(datetime.now().isoformat(), url, end=" ")
+    print(datetime.now().isoformat(), url)
 
     while True:
         response = requests.get(url, headers={"X-Riot-Token": os.getenv("RIOT_API_KEY")})
         
-        print(response.status_code)
+        print(datetime.now().isoformat(), response.status_code)
         data = response.json()
 
         if response.status_code == 429:
-            print("Sleep", 115)
+            print(datetime.now().isoformat(), "Sleep", 115)
             time.sleep(115)
         elif str(response.status_code)[0] == '4':
             exit()
